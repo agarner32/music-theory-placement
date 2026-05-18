@@ -299,13 +299,10 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this two-measure excerpt?",
+    text: "What time signature best fits this excerpt? (Each group of notes fills one measure.)",
     notation: {
-      clef: "treble", timeSignature: null,
+      clef: "treble", timeSignature: "4/4",
       notes: [
-        { keys: ["b/4"], duration: "q" },
-        { keys: ["b/4"], duration: "q" },
-        { keys: ["b/4"], duration: "h" },
         { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "h" }
