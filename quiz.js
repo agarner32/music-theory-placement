@@ -36,14 +36,23 @@ function loadQuestion(idx) {
   const notationWrap = document.getElementById("notation-wrap");
   if (q.notation) {
     notationWrap.style.display = "flex";
-    // Use a div target for VexFlow SVG
     notationWrap.innerHTML = '<div id="vf-target"></div>';
-    // Render after brief paint delay so container has width
     setTimeout(() => {
       try {
         renderNotation("vf-target", q.notation);
       } catch (e) {
         console.warn("VexFlow render error:", e);
+        notationWrap.innerHTML = '<p style="color:#999;font-size:0.85rem;">[Notation unavailable]</p>';
+      }
+    }, 30);
+  } else if (q.keysig) {
+    notationWrap.style.display = "flex";
+    notationWrap.innerHTML = '<div id="vf-target"></div>';
+    setTimeout(() => {
+      try {
+        renderKeySignature("vf-target", q.keysig);
+      } catch (e) {
+        console.warn("VexFlow keysig render error:", e);
         notationWrap.innerHTML = '<p style="color:#999;font-size:0.85rem;">[Notation unavailable]</p>';
       }
     }, 30);
