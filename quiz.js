@@ -26,7 +26,7 @@ function loadQuestion(idx) {
 
   // Progress
   document.getElementById("progress-bar").style.width = `${(idx / total) * 100}%`;
-  document.getElementById("question-counter").textContent = `${idx + 1} of ${total}`;
+  document.getElementById("question-counter").textContent = `${idx + 1} of ${questions.length}`;
   document.getElementById("section-label").textContent = q.section;
 
   // Question text
@@ -155,6 +155,7 @@ function showResults() {
   const pct   = Math.round((score / total) * 100);
 
   document.getElementById("score-number").textContent = score;
+  document.getElementById("score-total").textContent  = `/ ${total}`;
   document.getElementById("score-pct").textContent    = `${pct}%`;
 
   // Readiness message
