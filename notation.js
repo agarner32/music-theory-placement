@@ -1,7 +1,7 @@
 // =============================================
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
-const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, KeySignature } = Vex.Flow;
+const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental } = Vex.Flow;
 
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
@@ -69,15 +69,14 @@ function renderKeySignature(containerId, config) {
 
   container.innerHTML = "";
 
-  const width  = 220;
-  const height = 130;
+  const width  = 260;
+  const height = 140;
 
   const renderer = new Renderer(container, Renderer.Backends.SVG);
   renderer.resize(width, height);
   const ctx = renderer.getContext();
-  ctx.setFont("Arial", 10);
 
-  const stave = new Stave(20, 20, 180);
+  const stave = new Stave(20, 25, 220);
   stave.addClef(config.clef || "treble");
   stave.addKeySignature(config.key);
   stave.setContext(ctx).draw();
