@@ -84,12 +84,12 @@ const questions = [
   {
     section: SECTIONS.NOTE_READING,
     type: "notation",
-    text: "This note is on a ledger line below the treble clef. What is its name?",
-    notation: { clef: "treble", timeSignature: null, notes: [{ keys: ["c/4"], duration: "w" }] },
+    text: "This note sits below two ledger lines below the bass clef. What is its name?",
+    notation: { clef: "bass", timeSignature: null, notes: [{ keys: ["c/2"], duration: "w" }] },
     choices: [
       { label: "A", correct: false },
       { label: "B", correct: false },
-      { label: "C", correct: true, feedback: "Correct! Middle C sits on the first ledger line below the treble clef." },
+      { label: "C", correct: true, feedback: "Correct! C2 sits on two ledger lines below the bass staff." },
       { label: "D", correct: false }
     ]
   },
@@ -97,13 +97,26 @@ const questions = [
   {
     section: SECTIONS.NOTE_READING,
     type: "notation",
-    text: "This note is on a ledger line above the bass clef. What is its name?",
-    notation: { clef: "bass", timeSignature: null, notes: [{ keys: ["c/4"], duration: "w" }] },
+    text: "This note sits on top of two ledger lines above the treble clef. What is its name?",
+    notation: { clef: "treble", timeSignature: null, notes: [{ keys: ["d/6"], duration: "w" }] },
     choices: [
-      { label: "A", correct: false },
       { label: "B", correct: false },
-      { label: "C", correct: true, feedback: "Correct! Middle C sits on the first ledger line above the bass clef — the same pitch as the ledger line below the treble clef." },
-      { label: "D", correct: false }
+      { label: "C", correct: false },
+      { label: "D", correct: true, feedback: "Correct! D6 sits on top of two ledger lines above the treble staff." },
+      { label: "E", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.NOTE_READING,
+    type: "notation",
+    text: "This note sits in the space below two ledger lines below the treble clef. What is its name?",
+    notation: { clef: "treble", timeSignature: null, notes: [{ keys: ["g/3"], duration: "w" }] },
+    choices: [
+      { label: "E", correct: false },
+      { label: "F", correct: false },
+      { label: "G", correct: true, feedback: "Correct! G3 sits below two ledger lines below the treble staff — well into bass clef territory." },
+      { label: "A", correct: false }
     ]
   },
 
@@ -152,12 +165,12 @@ const questions = [
     section: SECTIONS.RHYTHM,
     type: "notation",
     text: "In 6/8 time, how many beats does this note receive?",
-    notation: { clef: "treble", timeSignature: "6/8", notes: [{ keys: ["b/4"], duration: "qd" }] },
+    notation: { clef: "treble", timeSignature: "6/8", notes: [{ keys: ["b/4"], duration: "q" }] },
     choices: [
+      { label: "½ beat",  correct: false },
       { label: "1 beat",  correct: false },
-      { label: "2 beats", correct: false },
-      { label: "3 beats", correct: true, feedback: "Correct! In 6/8 the eighth note gets one beat, so a dotted quarter (= 3 eighths) gets 3 beats." },
-      { label: "4 beats", correct: false }
+      { label: "2 beats", correct: true, feedback: "Correct! In 6/8 the eighth note gets one beat, so a quarter note (= 2 eighths) gets 2 beats." },
+      { label: "3 beats", correct: false }
     ]
   },
 
