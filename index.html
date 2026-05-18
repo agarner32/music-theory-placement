@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -39,7 +39,7 @@
       <div class="progress-wrap">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
-      <div class="question-counter" id="question-counter">1 of 23</div>
+      <div class="question-counter" id="question-counter">1 of --</div>
     </header>
 
     <main class="quiz-main">
@@ -62,7 +62,7 @@
       <h2 id="results-heading">Assessment Complete</h2>
       <div class="score-display">
         <span id="score-number">--</span>
-        <span class="score-label">/ 23</span>
+        <span class="score-label" id="score-total">/ --</span>
       </div>
       <div class="score-pct" id="score-pct">-- %</div>
       <div class="readiness-message" id="readiness-message"></div>
@@ -71,8 +71,8 @@
     </div>
   </div>
 
-  <script src="questions.js"></script>
-  <script src="notation.js"></script>
-  <script src="quiz.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/notation.js"></script>
+  <script src="js/quiz.js"></script>
 </body>
 </html>
