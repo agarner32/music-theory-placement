@@ -347,7 +347,7 @@ const questions = [
   {
     section: SECTIONS.RHYTHM_ID,
     type: "notation",
-    text: "Which rhythm matches: 1 — 2 — 3 — 4-and (quarter, quarter, quarter, two eighths)?",
+    text: "Which description best matches this rhythm?",
     notation: {
       clef: "treble",
       timeSignature: "4/4",
@@ -360,9 +360,12 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Yes — this matches",  correct: true, feedback: "Correct! Three quarter notes plus two eighth notes = 4 beats in 4/4." },
-      { label: "No — this doesn't match", correct: false }
-    ]
+      { label: "Quarter, quarter, quarter, two eighths",    correct: true,  feedback: "Correct! Three quarter notes plus two eighth notes = 4 beats in 4/4." },
+      { label: "Quarter, quarter, quarter, two sixteenths", correct: false },
+      { label: "Half, quarter, two eighths",                correct: false },
+      { label: "Four quarter notes",                        correct: false }
+    ],
+    wideChoices: true
   },
 
   // ── STRETCH QUESTIONS ─────────────────────────────────────
