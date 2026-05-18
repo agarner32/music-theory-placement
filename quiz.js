@@ -92,29 +92,28 @@ function handleAnswer(choice, clickedBtn) {
 
   const q = questions[currentIndex];
 
-  // Disable all choices
-  document.querySelectorAll(".choice-btn").forEach(b => b.disabled = true);
+  // Disable all choices immediately to prevent double-clicks
+  document.querySelectorAll(".choice-btn").forEach(b => { b.disabled = true; });
 
-  // Highlight correct / wrong
+  // Initialize section tracking
+  if (!sectionScores[q.section]) {
+    sectionScores[q.section] = { correct: 0, total: 0 };
+  }
+  sectionScores[q.section].total++;
+
+  // Highlight correct answer
   document.querySelectorAll(".choice-btn").forEach(b => {
-    const label = b.textContent;
-    const matchedChoice = q.choices.find(c => c.label === label);
+    const matchedChoice = q.choices.find(c => c.label === b.textContent);
     if (matchedChoice && matchedChoice.correct) b.classList.add("correct");
   });
 
   if (choice.correct) {
     clickedBtn.classList.add("correct");
     score++;
-    // Track per-section
-    sectionScores[q.section] = sectionScores[q.section] || { correct: 0, total: 0 };
     sectionScores[q.section].correct++;
   } else {
     clickedBtn.classList.add("wrong");
   }
-
-  // Track per-section total
-  sectionScores[q.section] = sectionScores[q.section] || { correct: 0, total: 0 };
-  sectionScores[q.section].total++;
 
   // Feedback
   const feedbackEl = document.getElementById("feedback");
@@ -123,7 +122,6 @@ function handleAnswer(choice, clickedBtn) {
     feedbackEl.className = "feedback correct";
     feedbackEl.style.display = "block";
   } else if (!choice.correct) {
-    // Find the correct choice for the explanation
     const correctChoice = q.choices.find(c => c.correct);
     const msg = correctChoice && correctChoice.feedback
       ? `The correct answer is "${correctChoice.label}." ${correctChoice.feedback}`
