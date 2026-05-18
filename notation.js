@@ -1,7 +1,7 @@
 // =============================================
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
-const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental } = Vex.Flow;
+const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, KeySignature } = Vex.Flow;
 
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
@@ -19,15 +19,12 @@ function renderNotation(containerId, config) {
 
   const staveX = 20;
   const staveW = width - 40;
-  const stave = new Stave(staveX, 20, staveW);
+  const stave  = new Stave(staveX, 20, staveW);
 
   stave.addClef(config.clef || "treble");
-  if (config.timeSignature) {
-    stave.addTimeSignature(config.timeSignature);
-  }
+  if (config.timeSignature) stave.addTimeSignature(config.timeSignature);
   stave.setContext(ctx).draw();
 
-  // Build StaveNotes
   const staveNotes = config.notes.map(n => {
     const sn = new StaveNote({
       keys:           n.keys,
@@ -42,18 +39,17 @@ function renderNotation(containerId, config) {
     return sn;
   });
 
-  // Manually beam consecutive eighth notes
+  // Auto-beam consecutive eighth notes
   const eighths = staveNotes.filter(n => n.getDuration() === "8");
-  const beams = eighths.length >= 2 ? [new Beam(eighths)] : [];
+  const beams   = eighths.length >= 2 ? [new Beam(eighths)] : [];
 
-  // Voice
   let numBeats = 4, beatValue = 4;
   if (config.timeSignature) {
     const parts = config.timeSignature.split("/");
     numBeats  = parseInt(parts[0]);
     beatValue = parseInt(parts[1]);
   } else {
-    const durMap = { w: 1, h: 2, q: 4, "8": 8 };
+    const durMap = { w: 1, h: 2, q: 4, qd: 2.67, "8": 8 };
     let totalQ = 0;
     config.notes.forEach(n => { totalQ += 16 / (durMap[n.duration] || 4); });
     numBeats  = Math.max(4, Math.ceil(totalQ / 4));
@@ -62,10 +58,27 @@ function renderNotation(containerId, config) {
 
   const voice = new Voice({ num_beats: numBeats, beat_value: beatValue }).setMode(Voice.Mode.SOFT);
   voice.addTickables(staveNotes);
-
   new Formatter().joinVoices([voice]).format([voice], staveW - 60);
   voice.draw(ctx, stave);
-
-  // Draw beams
   beams.forEach(b => b.setContext(ctx).draw());
+}
+
+function renderKeySignature(containerId, config) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const width  = 220;
+  const height = 130;
+
+  const renderer = new Renderer(container, Renderer.Backends.SVG);
+  renderer.resize(width, height);
+  const ctx = renderer.getContext();
+  ctx.setFont("Arial", 10);
+
+  const stave = new Stave(20, 20, 180);
+  stave.addClef(config.clef || "treble");
+  stave.addKeySignature(config.key);
+  stave.setContext(ctx).draw();
 }
