@@ -45,9 +45,10 @@ function renderNotation(containerId, config) {
   // Build VexFlow StaveNotes
   const staveNotes = config.notes.map(n => {
     const sn = new StaveNote({
-      keys:     n.keys,
-      duration: n.duration,
-      clef:     config.clef || "treble"
+      keys:          n.keys,
+      duration:      n.duration,
+      clef:          config.clef || "treble",
+      stem_direction: -1
     });
     // Add accidentals if needed — VexFlow requires explicit markup
     n.keys.forEach((key, i) => {
