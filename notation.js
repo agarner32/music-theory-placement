@@ -42,8 +42,9 @@ function renderNotation(containerId, config) {
     return sn;
   });
 
-  // Auto-beam consecutive eighth notes
-  const beams = Beam.generateBeams(staveNotes);
+  // Manually beam consecutive eighth notes
+  const eighths = staveNotes.filter(n => n.getDuration() === "8");
+  const beams = eighths.length >= 2 ? [new Beam(eighths)] : [];
 
   // Voice
   let numBeats = 4, beatValue = 4;
