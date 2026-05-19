@@ -200,10 +200,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole rest (4 beats)",  correct: false },
-      { label: "Half rest (2 beats)",   correct: false },
-      { label: "Quarter rest (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
-      { label: "Eighth rest (½ beat)",  correct: false }
+      { label: "Whole rest",  correct: false },
+      { label: "Half rest",   correct: false },
+      { label: "Quarter rest", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
+      { label: "Eighth rest",  correct: false }
     ],
     wideChoices: true
   },
@@ -221,10 +221,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole note (4 beats)",  correct: false },
-      { label: "Half note (2 beats)",   correct: false },
-      { label: "Quarter note (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
-      { label: "Eighth note (½ beat)",  correct: false }
+      { label: "Whole note",  correct: false },
+      { label: "Half note",   correct: false },
+      { label: "Quarter note", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
+      { label: "Eighth note",  correct: false }
     ],
     wideChoices: true
   },
@@ -273,11 +273,11 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "text",
-    text: "In 3/8 time, what note gets one beat?",
+    text: "In 3/8 time, what note gets three beats?",
     choices: [
-      { label: "The whole note",   correct: false },
-      { label: "The quarter note", correct: false },
-      { label: "The eighth note",  correct: true, feedback: "Correct! The bottom number 8 means the eighth note gets one beat — just like in 6/8." },
+      { label: "The quarter note",   correct: false },
+      { label: "The eighth note", correct: false },
+      { label: "The dotted quarter note",  correct: true, feedback: "Correct!  — the 8 means the 1/8 note = one beat.  3 eighth notes = a dotted quarter" },
       { label: "The half note",    correct: false }
     ],
     wideChoices: true
