@@ -10,6 +10,7 @@ let answered     = false;
 const sectionScores = {};
 
 function getScreen(id) { return document.getElementById(id); }
+
 function jumpToQuestion(num) {
   num = parseInt(num) - 1;
   if (!isNaN(num) && num >= 0 && num < questions.length) {
@@ -20,6 +21,12 @@ function jumpToQuestion(num) {
     loadQuestion(num);
   }
 }
+
+// Create jump tool UI
+const jumpDiv = document.createElement("div");
+jumpDiv.style.cssText = "position:fixed;top:10px;right:10px;z-index:999;background:white;padding:5px;border:1px solid #ccc;border-radius:5px;";
+jumpDiv.innerHTML = '<input id="dev-jump" type="number" min="1" placeholder="Q#" style="width:40px;" /> <button onclick="jumpToQuestion(document.getElementById(\'dev-jump\').value)">Go</button>';
+document.body.appendChild(jumpDiv);
 
 // ── START ─────────────────────────────────────────────────
 document.getElementById("btn-start").addEventListener("click", () => {
