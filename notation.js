@@ -39,9 +39,15 @@ function renderNotation(containerId, config) {
     return sn;
   });
 
-  // Auto-beam consecutive eighth notes
-  const eighths = staveNotes.filter(n => n.getDuration() === "8");
-  const beams   = eighths.length >= 2 ? [new Beam(eighths)] : [];
+  // Beaming: use explicit beamGroups if provided, otherwise auto-beam all eighths
+  let beams = [];
+  if (config.beamGroups) {
+    beams = config.beamGroups.map(group => new Beam(group.map(i => staveNotes[i])));
+  } else {
+    const eighths = staveNotes.filter(n => ["8","16","8d"].includes(n.getDuration()));
+    if (eighths.length >= 2) beams = [new Beam(eighths)];
+  }
+
   let numBeats = 4, beatValue = 4;
   if (config.timeSignature) {
     const parts = config.timeSignature.split("/");
