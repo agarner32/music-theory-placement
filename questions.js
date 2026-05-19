@@ -200,10 +200,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole rest",  correct: false },
-      { label: "Half rest",   correct: false },
-      { label: "Quarter rest", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
-      { label: "Eighth rest",  correct: false }
+      { label: "Whole rest (4 beats)",  correct: false },
+      { label: "Half rest (2 beats)",   correct: false },
+      { label: "Quarter rest (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
+      { label: "Eighth rest (½ beat)",  correct: false }
     ],
     wideChoices: true
   },
@@ -221,10 +221,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole note",  correct: false },
-      { label: "Half note",   correct: false },
-      { label: "Quarter note", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
-      { label: "Eighth note",  correct: false }
+      { label: "Whole note (4 beats)",  correct: false },
+      { label: "Half note (2 beats)",   correct: false },
+      { label: "Quarter note (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
+      { label: "Eighth note (½ beat)",  correct: false }
     ],
     wideChoices: true
   },
@@ -273,11 +273,11 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "text",
-    text: "In 3/8 time, what note gets three beats?",
+    text: "In 3/8 time, what note gets one beat?",
     choices: [
-      { label: "The quarter note",   correct: false },
-      { label: "The eighth note", correct: false },
-      { label: "The dotted quarter note",  correct: true, feedback: "Correct!  — the 8 means the 1/8 note = one beat.  3 eighth notes = a dotted quarter" },
+      { label: "The whole note",   correct: false },
+      { label: "The quarter note", correct: false },
+      { label: "The eighth note",  correct: true, feedback: "Correct! The bottom number 8 means the eighth note gets one beat — just like in 6/8." },
       { label: "The half note",    correct: false }
     ],
     wideChoices: true
@@ -299,30 +299,50 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What meter best represents this excerpt, and where would the barline go?",
+    text: "What time signature best fits this excerpt? (Each group of notes fills one measure.)",
     notation: {
-      clef: "treble", timeSignature: null,
+      clef: "treble", timeSignature: "4/4",
       notes: [
         { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "q" },
-        { keys: ["b/4"], duration: "h" },
-        { keys: ["b/4"], duration: "q" },
-        { keys: ["b/4"], duration: "8" },
-        { keys: ["b/4"], duration: "8" },
         { keys: ["b/4"], duration: "h" }
-      ],
-      barlineAfter: 3
+      ]
     },
     choices: [
-      { label: "4/4; barline after the first half note",     correct: true,  feedback: "Correct! Each measure has 4 beats: quarter + quarter + half in measure one, quarter + two eighths + half in measure two." },
-      { label: "3/4; barline after the second quarter note", correct: false },
-      { label: "2/4; barline after the first quarter note",  correct: false },
-      { label: "6/8; barline after the third eighth note",   correct: false }
-    ],
-    wideChoices: true
+      { label: "3/4", correct: false },
+      { label: "4/4", correct: true, feedback: "Correct! Quarter + quarter + half = 4 beats per measure, fitting 4/4." },
+      { label: "2/4", correct: false },
+      { label: "6/8", correct: false }
+    ]
   },
 
   // ── KEY SIGNATURES ────────────────────────────────────────
+
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "What major key does this key signature represent?",
+    keysig: { clef: "treble", key: "G" },
+    choices: [
+      { label: "C major", correct: false },
+      { label: "G major", correct: true, feedback: "Correct! One sharp (F#) means G major." },
+      { label: "D major", correct: false },
+      { label: "F major", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "What major key does this key signature represent?",
+    keysig: { clef: "treble", key: "F" },
+    choices: [
+      { label: "C major",  correct: false },
+      { label: "G major",  correct: false },
+      { label: "Bb major", correct: false },
+      { label: "F major",  correct: true, feedback: "Correct! One flat (Bb) means F major." }
+    ]
+  },
 
   {
     section: SECTIONS.KEY_SIG,
@@ -336,6 +356,7 @@ const questions = [
       { label: "E major", correct: false }
     ]
   },
+
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -348,30 +369,20 @@ const questions = [
       { label: "Bb major", correct: true, feedback: "Correct! Two flats (Bb and Eb) mean Bb major." }
     ]
   },
+
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
     text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "G" },
+    keysig: { clef: "bass", key: "Eb" },
     choices: [
-      { label: "C major", correct: false },
-      { label: "G major", correct: true, feedback: "Correct! One sharp (F#) means G major." },
-      { label: "D major", correct: false },
-      { label: "F major", correct: false }
-    ]
-  },
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "Ab" },
-    choices: [
-      { label: "Db major", correct: false },
-      { label: "Eb major", correct: false },
       { label: "Bb major", correct: false },
-      { label: "Ab major", correct: true, feedback: "Correct! Four flats (Bb, Eb, Ab, Db) mean Ab major." }
+      { label: "Eb major", correct: true, feedback: "Correct! Three flats (Bb, Eb, Ab) mean Eb major." },
+      { label: "Ab major", correct: false },
+      { label: "F major",  correct: false }
     ]
   },
+
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -384,18 +395,20 @@ const questions = [
       { label: "B major", correct: false }
     ]
   },
+
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
     text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "F" },
+    keysig: { clef: "treble", key: "Ab" },
     choices: [
-      { label: "C major",  correct: false },
-      { label: "G major",  correct: false },
+      { label: "Db major", correct: false },
+      { label: "Eb major", correct: false },
       { label: "Bb major", correct: false },
-      { label: "F major",  correct: true, feedback: "Correct! One flat (Bb) means F major." }
+      { label: "Ab major", correct: true, feedback: "Correct! Four flats (Bb, Eb, Ab, Db) mean Ab major." }
     ]
   },
+
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -406,18 +419,6 @@ const questions = [
       { label: "F# major", correct: false },
       { label: "B major",  correct: true, feedback: "Correct! Five sharps (F#, C#, G#, D#, A#) mean B major." },
       { label: "A major",  correct: false }
-    ]
-  },
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What major key does this key signature represent?",
-    keysig: { clef: "bass", key: "Eb" },
-    choices: [
-      { label: "Bb major", correct: false },
-      { label: "Eb major", correct: true, feedback: "Correct! Three flats (Bb, Eb, Ab) mean Eb major." },
-      { label: "Ab major", correct: false },
-      { label: "F major",  correct: false }
     ]
   },
 
@@ -467,10 +468,10 @@ const questions = [
     type: "text",
     text: "A teacher claps this pattern in 4/4: LONG — short short — LONG. Which description matches?",
     choices: [
-      { label: "Quarter, two eighth notes, quarter", correct: true, feedback: "Correct! Quarter (1 beat) + two eighths (1 beat) + quarter (1 beat) spans one measure of 3/4." },
-      { label: "Dotted quarter, two eighth notes, quarter note",    correct: false },
-      { label: "Quarter, eighth, quarter, quarter",     correct: false },
-      { label: "Dotted quarter, eighth,eighth quarter note",     correct: false }
+      { label: "Half note, two eighth notes, half note", correct: true, feedback: "Correct! Half (2 beats) + two eighths (1 beat) + half (2 beats) spans two measures of 4/4." },
+      { label: "Whole note, quarter note, half note",    correct: false },
+      { label: "Quarter, quarter, quarter, quarter",     correct: false },
+      { label: "Dotted quarter, eighth, whole note",     correct: false }
     ],
     wideChoices: true
   },
@@ -499,6 +500,33 @@ const questions = [
   },
 
   // ── STRETCH QUESTIONS ─────────────────────────────────────
+
+  {
+    section: SECTIONS.METER,
+    type: "notation",
+    text: "What time signature best fits this two-measure excerpt?",
+    notation: {
+      clef: "treble", timeSignature: null,
+      notes: [
+        { keys: ["b/4"], duration: "8" },
+        { keys: ["b/4"], duration: "8" },
+        { keys: ["b/4"], duration: "8" },
+        { keys: ["b/4"], duration: "qd" },
+        { keys: ["b/4"], duration: "8d" },
+        { keys: ["b/4"], duration: "16" },
+        { keys: ["b/4"], duration: "8" },
+        { keys: ["b/4"], duration: "8r" },
+        { keys: ["b/4"], duration: "q" }
+      ],
+      beamGroups: [[0,1,2],[4,5,6]]
+    },
+    choices: [
+      { label: "6/8", correct: true,  feedback: "Correct! Each measure has 6 eighth-note beats, fitting 6/8." },
+      { label: "3/4", correct: false },
+      { label: "4/4", correct: false },
+      { label: "3/8", correct: false }
+    ]
+  },
 
   {
     section: SECTIONS.STRETCH,
