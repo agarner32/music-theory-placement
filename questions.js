@@ -421,6 +421,31 @@ const questions = [
       { label: "A major",  correct: false }
     ]
   },
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "How many flats are in this key signature?",
+    keysig: { clef: "treble", key: "Db" },
+    choices: [
+      { label: "3 flats", correct: false },
+      { label: "4 flats", correct: false },
+      { label: "5 flats", correct: true, feedback: "Correct! Db major has 5 flats: Bb, Eb, Ab, Db, Gb." },
+      { label: "6 flats", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "How many sharps are in this key signature?",
+    keysig: { clef: "treble", key: "E" },
+    choices: [
+      { label: "3 sharps", correct: false },
+      { label: "4 sharps", correct: true, feedback: "Correct! E major has 4 sharps: F#, C#, G#, D#." },
+      { label: "5 sharps", correct: false },
+      { label: "6 sharps", correct: false }
+    ]
+  },
 
   // ── ENHARMONIC EQUIVALENTS ────────────────────────────────
 
