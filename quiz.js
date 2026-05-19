@@ -11,6 +11,20 @@ const sectionScores = {};
 
 function getScreen(id) { return document.getElementById(id); }
 
+// ── DEV SHORTCUT (remove before publishing) ───────────────
+document.addEventListener("keydown", e => {
+  if (e.altKey && e.key === "j") {
+    const num = parseInt(prompt("Jump to question number:")) - 1;
+    if (!isNaN(num) && num >= 0 && num < questions.length) {
+      getScreen("screen-intro").classList.remove("active");
+      getScreen("screen-quiz").classList.add("active");
+      currentIndex = num;
+      score = 0;
+      loadQuestion(num);
+    }
+  }
+});
+
 // ── START ─────────────────────────────────────────────────
 document.getElementById("btn-start").addEventListener("click", () => {
   getScreen("screen-intro").classList.remove("active");
