@@ -42,13 +42,6 @@ function renderNotation(containerId, config) {
   // Auto-beam consecutive eighth notes
   const eighths = staveNotes.filter(n => n.getDuration() === "8");
   const beams   = eighths.length >= 2 ? [new Beam(eighths)] : [];
-
-  // Add barline after a specific note index if requested
-  if (config.barlineAfter !== undefined) {
-    const { Barline } = Vex.Flow;
-    staveNotes[config.barlineAfter - 1].addModifier(new Barline(Barline.type.SINGLE), 0);
-  }
-
   let numBeats = 4, beatValue = 4;
   if (config.timeSignature) {
     const parts = config.timeSignature.split("/");
