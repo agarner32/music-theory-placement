@@ -504,7 +504,7 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this two-measure excerpt?",
+    text: "What time signature best fits this two measure excerpt?  Note: a barline is missing.",
     notation: {
       clef: "treble", timeSignature: null,
       notes: [
