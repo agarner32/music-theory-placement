@@ -11,18 +11,6 @@ const sectionScores = {};
 
 function getScreen(id) { return document.getElementById(id); }
 
-// ── DEV SHORTCUT (remove before publishing) ───────────────
-function jumpToQuestion(num) {
-  num = parseInt(num) - 1;
-  if (!isNaN(num) && num >= 0 && num < questions.length) {
-    getScreen("screen-intro").classList.remove("active");
-    getScreen("screen-quiz").classList.add("active");
-    currentIndex = num;
-    score = 0;
-    loadQuestion(num);
-  }
-}
-
 // ── START ─────────────────────────────────────────────────
 document.getElementById("btn-start").addEventListener("click", () => {
   getScreen("screen-intro").classList.remove("active");
@@ -68,6 +56,17 @@ function loadQuestion(idx) {
         notationWrap.innerHTML = '<p style="color:#999;font-size:0.85rem;">[Notation unavailable]</p>';
       }
     }, 30);
+  } else if (q.keyboard) {
+    notationWrap.style.display = "flex";
+    notationWrap.innerHTML = '<div id="vf-target"></div>';
+    setTimeout(() => {
+      try {
+        renderKeyboard("vf-target", q.keyboard);
+      } catch (e) {
+        console.warn("Keyboard render error:", e);
+        notationWrap.innerHTML = '<p style="color:#999;font-size:0.85rem;">[Keyboard unavailable]</p>';
+      }
+    }, 30);
   } else {
     notationWrap.style.display = "none";
     notationWrap.innerHTML = "";
@@ -78,10 +77,7 @@ function loadQuestion(idx) {
   choicesEl.innerHTML = "";
   choicesEl.className = "choices" + (q.wideChoices ? " single-col" : "");
 
-  // Shuffle choices
-  const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
-
-  shuffled.forEach((choice, i) => {
+  q.choices.forEach((choice, i) => {
     const btn = document.createElement("button");
     btn.className = "choice-btn";
     btn.textContent = choice.label;
@@ -107,28 +103,29 @@ function handleAnswer(choice, clickedBtn) {
 
   const q = questions[currentIndex];
 
-  // Disable all choices immediately to prevent double-clicks
-  document.querySelectorAll(".choice-btn").forEach(b => { b.disabled = true; });
+  // Disable all choices
+  document.querySelectorAll(".choice-btn").forEach(b => b.disabled = true);
 
-  // Initialize section tracking
-  if (!sectionScores[q.section]) {
-    sectionScores[q.section] = { correct: 0, total: 0 };
-  }
-  sectionScores[q.section].total++;
-
-  // Highlight correct answer
+  // Highlight correct / wrong
   document.querySelectorAll(".choice-btn").forEach(b => {
-    const matchedChoice = q.choices.find(c => c.label === b.textContent);
+    const label = b.textContent;
+    const matchedChoice = q.choices.find(c => c.label === label);
     if (matchedChoice && matchedChoice.correct) b.classList.add("correct");
   });
 
   if (choice.correct) {
     clickedBtn.classList.add("correct");
     score++;
+    // Track per-section
+    sectionScores[q.section] = sectionScores[q.section] || { correct: 0, total: 0 };
     sectionScores[q.section].correct++;
   } else {
     clickedBtn.classList.add("wrong");
   }
+
+  // Track per-section total
+  sectionScores[q.section] = sectionScores[q.section] || { correct: 0, total: 0 };
+  sectionScores[q.section].total++;
 
   // Feedback
   const feedbackEl = document.getElementById("feedback");
@@ -137,6 +134,7 @@ function handleAnswer(choice, clickedBtn) {
     feedbackEl.className = "feedback correct";
     feedbackEl.style.display = "block";
   } else if (!choice.correct) {
+    // Find the correct choice for the explanation
     const correctChoice = q.choices.find(c => c.correct);
     const msg = correctChoice && correctChoice.feedback
       ? `The correct answer is "${correctChoice.label}." ${correctChoice.feedback}`
@@ -212,4 +210,3 @@ function showResults() {
     breakdownEl.appendChild(row);
   });
 }
-
