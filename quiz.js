@@ -66,7 +66,10 @@ function loadQuestion(idx) {
   choicesEl.innerHTML = "";
   choicesEl.className = "choices" + (q.wideChoices ? " single-col" : "");
 
-  q.choices.forEach((choice, i) => {
+  // Shuffle choices
+  const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach((choice, i) => {
     const btn = document.createElement("button");
     btn.className = "choice-btn";
     btn.textContent = choice.label;
