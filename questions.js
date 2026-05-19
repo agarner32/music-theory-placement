@@ -468,10 +468,10 @@ const questions = [
     type: "text",
     text: "A teacher claps this pattern in 4/4: LONG — short short — LONG. Which description matches?",
     choices: [
-      { label: "Half note, two eighth notes, half note", correct: true, feedback: "Correct! Half (2 beats) + two eighths (1 beat) + half (2 beats) spans two measures of 4/4." },
-      { label: "Whole note, quarter note, half note",    correct: false },
-      { label: "Quarter, quarter, quarter, quarter",     correct: false },
-      { label: "Dotted quarter, eighth, whole note",     correct: false }
+      { label: "Quarter, two eighth notes, quarter", correct: true, feedback: "Correct! Quarter (1 beat) + two eighths (1 beat) + quarter (1 beat) spans one measure of 3/4." },
+      { label: "Dotted quarter, two eighth notes, quarter note",    correct: false },
+      { label: "Quarter, eighth, quarter, quarter",     correct: false },
+      { label: "Dotted quarter, eighth,eighth quarter note",     correct: false }
     ],
     wideChoices: true
   },
