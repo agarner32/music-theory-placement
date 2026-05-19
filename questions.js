@@ -228,6 +228,37 @@ const questions = [
     ],
     wideChoices: true
   },
+  {
+    section: SECTIONS.RHYTHM,
+    type: "notation",
+    text: "In 4/4 time, how many beats does this rest receive?",
+    notation: {
+      clef: "treble", timeSignature: "4/4",
+      notes: [{ keys: ["b/4"], duration: "qdr" }]
+    },
+    choices: [
+      { label: "1 beat",   correct: false },
+      { label: "1½ beats", correct: true, feedback: "Correct! A dotted quarter rest gets 1½ beats in 4/4 — the dot adds half the value of the quarter rest." },
+      { label: "2 beats",  correct: false },
+      { label: "3 beats",  correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.RHYTHM,
+    type: "notation",
+    text: "In 3/4 time, how many beats does this rest receive?",
+    notation: {
+      clef: "treble", timeSignature: "3/4",
+      notes: [{ keys: ["b/4"], duration: "hr" }]
+    },
+    choices: [
+      { label: "1 beat",  correct: false },
+      { label: "2 beats", correct: true, feedback: "Correct! A half rest receives 2 beats in 3/4 time — the same as a half note." },
+      { label: "3 beats", correct: false },
+      { label: "4 beats", correct: false }
+    ]
+  },
 
   // ── METER ─────────────────────────────────────────────────
 
