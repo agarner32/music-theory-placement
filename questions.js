@@ -228,37 +228,6 @@ const questions = [
     ],
     wideChoices: true
   },
-  {
-    section: SECTIONS.RHYTHM,
-    type: "notation",
-    text: "In 4/4 time, how many beats does this rest receive?",
-    notation: {
-      clef: "treble", timeSignature: "4/4",
-      notes: [{ keys: ["b/4"], duration: "qr", dots: 1 }]
-    },
-    choices: [
-      { label: "1 beat",   correct: false },
-      { label: "1½ beats", correct: true, feedback: "Correct! A dotted quarter rest gets 1½ beats in 4/4 — the dot adds half the value of the quarter rest." },
-      { label: "2 beats",  correct: false },
-      { label: "3 beats",  correct: false }
-    ]
-  },
-
-  {
-    section: SECTIONS.RHYTHM,
-    type: "notation",
-    text: "In 3/4 time, how many beats does this rest receive?",
-    notation: {
-      clef: "treble", timeSignature: "3/4",
-      notes: [{ keys: ["b/4"], duration: "hr" }]
-    },
-    choices: [
-      { label: "1 beat",  correct: false },
-      { label: "2 beats", correct: true, feedback: "Correct! A half rest receives 2 beats in 3/4 time — the same as a half note." },
-      { label: "3 beats", correct: false },
-      { label: "4 beats", correct: false }
-    ]
-  },
 
   // ── METER ─────────────────────────────────────────────────
 
@@ -452,31 +421,6 @@ const questions = [
       { label: "A major",  correct: false }
     ]
   },
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What minor key does this key signature represent?",
-    keysig: { clef: "treble", key: "Db" },
-    choices: [
-      { label: "G minor",  correct: false },
-      { label: "Bb minor", correct: true, feedback: "Correct! Bb minor has 5 flats — the same key signature as Db major." },
-      { label: "Eb minor", correct: false },
-      { label: "F minor",  correct: false }
-    ]
-  },
-
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What minor key does this key signature represent?",
-    keysig: { clef: "treble", key: "E" },
-    choices: [
-      { label: "F# minor", correct: false },
-      { label: "B minor",  correct: false },
-      { label: "C# minor", correct: true, feedback: "Correct! C# minor has 4 sharps — the same key signature as E major." },
-      { label: "G# minor", correct: false }
-    ]
-  },
 
   // ── ENHARMONIC EQUIVALENTS ────────────────────────────────
 
@@ -514,6 +458,32 @@ const questions = [
       { label: "Db", correct: true, feedback: "Correct! C# and Db name the same black key on the piano." },
       { label: "D#", correct: false },
       { label: "B#", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.ENHARMONIC,
+    type: "keyboard",
+    text: "The highlighted key is shown on the keyboard. What are its two possible names?",
+    keyboard: { highlight: "F#" },
+    choices: [
+      { label: "F# and Gb", correct: true,  feedback: "Correct! This black key can be called F# or Gb — two names for the same pitch." },
+      { label: "F# and G#", correct: false },
+      { label: "Eb and F#", correct: false },
+      { label: "Gb and Ab", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.ENHARMONIC,
+    type: "keyboard",
+    text: "The highlighted key is shown on the keyboard. What are its two possible names?",
+    keyboard: { highlight: "Bb" },
+    choices: [
+      { label: "Bb and B#", correct: false },
+      { label: "Ab and Bb", correct: false },
+      { label: "A# and Bb", correct: true,  feedback: "Correct! This black key can be called A# or Bb — two names for the same pitch." },
+      { label: "A# and B",  correct: false }
     ]
   },
 
@@ -560,7 +530,7 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this two measure excerpt?  Note: a barline is missing.",
+    text: "What time signature best fits this two-measure excerpt?",
     notation: {
       clef: "treble", timeSignature: null,
       notes: [
@@ -581,6 +551,19 @@ const questions = [
       { label: "3/4", correct: false },
       { label: "4/4", correct: false },
       { label: "3/8", correct: false }
+    ]
+  },
+
+  {
+    section: SECTIONS.STRETCH,
+    type: "keyboard",
+    text: "BONUS: The highlighted key is a white key. What is its enharmonic spelling?",
+    keyboard: { highlight: "F" },
+    choices: [
+      { label: "Fb", correct: false },
+      { label: "E#", correct: true,  feedback: "Correct! F and E# are enharmonic — F is the same pitch as E#, even though F is a white key." },
+      { label: "Gb", correct: false },
+      { label: "F#", correct: false }
     ]
   },
 
