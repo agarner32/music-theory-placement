@@ -299,9 +299,9 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this two-measure excerpt?",
+    text: "What meter best represents this excerpt, and where would the barline go?",
     notation: {
-      clef: "treble", timeSignature: "4/4",
+      clef: "treble", timeSignature: null,
       notes: [
         { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "q" },
@@ -314,11 +314,12 @@ const questions = [
       barlineAfter: 3
     },
     choices: [
-      { label: "3/4", correct: false },
-      { label: "4/4", correct: true, feedback: "Correct! Each measure has 4 beats, fitting 4/4." },
-      { label: "2/4", correct: false },
-      { label: "6/8", correct: false }
-    ]
+      { label: "4/4; barline after the first half note",     correct: true,  feedback: "Correct! Each measure has 4 beats: quarter + quarter + half in measure one, quarter + two eighths + half in measure two." },
+      { label: "3/4; barline after the second quarter note", correct: false },
+      { label: "2/4; barline after the first quarter note",  correct: false },
+      { label: "6/8; barline after the third eighth note",   correct: false }
+    ],
+    wideChoices: true
   },
 
   // ── KEY SIGNATURES ────────────────────────────────────────
