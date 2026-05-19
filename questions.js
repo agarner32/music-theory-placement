@@ -424,26 +424,26 @@ const questions = [
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
-    text: "How many flats are in this key signature?",
+    text: "What minor key does this key signature represent?",
     keysig: { clef: "treble", key: "Db" },
     choices: [
-      { label: "3 flats", correct: false },
-      { label: "4 flats", correct: false },
-      { label: "5 flats", correct: true, feedback: "Correct! Db major has 5 flats: Bb, Eb, Ab, Db, Gb." },
-      { label: "6 flats", correct: false }
+      { label: "G minor",  correct: false },
+      { label: "Bb minor", correct: true, feedback: "Correct! Bb minor has 5 flats — the same key signature as Db major." },
+      { label: "Eb minor", correct: false },
+      { label: "F minor",  correct: false }
     ]
   },
 
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
-    text: "How many sharps are in this key signature?",
+    text: "What minor key does this key signature represent?",
     keysig: { clef: "treble", key: "E" },
     choices: [
-      { label: "3 sharps", correct: false },
-      { label: "4 sharps", correct: true, feedback: "Correct! E major has 4 sharps: F#, C#, G#, D#." },
-      { label: "5 sharps", correct: false },
-      { label: "6 sharps", correct: false }
+      { label: "F# minor", correct: false },
+      { label: "B minor",  correct: false },
+      { label: "C# minor", correct: true, feedback: "Correct! C# minor has 4 sharps — the same key signature as E major." },
+      { label: "G# minor", correct: false }
     ]
   },
 
