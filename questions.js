@@ -299,18 +299,23 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this excerpt? (Each group of notes fills one measure.)",
+    text: "What time signature best fits this two-measure excerpt?",
     notation: {
       clef: "treble", timeSignature: "4/4",
       notes: [
         { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "q" },
+        { keys: ["b/4"], duration: "h" },
+        { keys: ["b/4"], duration: "q" },
+        { keys: ["b/4"], duration: "8" },
+        { keys: ["b/4"], duration: "8" },
         { keys: ["b/4"], duration: "h" }
-      ]
+      ],
+      barlineAfter: 3
     },
     choices: [
       { label: "3/4", correct: false },
-      { label: "4/4", correct: true, feedback: "Correct! Quarter + quarter + half = 4 beats per measure, fitting 4/4." },
+      { label: "4/4", correct: true, feedback: "Correct! Each measure has 4 beats, fitting 4/4." },
       { label: "2/4", correct: false },
       { label: "6/8", correct: false }
     ]
