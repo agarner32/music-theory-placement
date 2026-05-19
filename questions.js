@@ -234,7 +234,7 @@ const questions = [
     text: "In 4/4 time, how many beats does this rest receive?",
     notation: {
       clef: "treble", timeSignature: "4/4",
-      notes: [{ keys: ["b/4"], duration: "qdr" }]
+      notes: [{ keys: ["b/4"], duration: "dqr" }]
     },
     choices: [
       { label: "1 beat",   correct: false },
