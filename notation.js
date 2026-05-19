@@ -1,7 +1,7 @@
 // =============================================
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
-const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental } = Vex.Flow;
+const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, Dot } = Vex.Flow;
 
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
@@ -36,6 +36,7 @@ function renderNotation(containerId, config) {
       if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
       else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
     });
+    if (n.dots) Dot.buildAndAttach([sn], { all: true });
     return sn;
   });
 
