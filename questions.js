@@ -494,7 +494,7 @@ const questions = [
     type: "text",
     text: "A teacher claps this pattern in 4/4: LONG — short short — LONG. Which description matches?",
     choices: [
-      { label: "Half note, two eighth notes, half note", correct: true, feedback: "Correct! Half (2 beats) + two eighths (1 beat) + half (2 beats) spans two measures of 4/4." },
+      { label: "Quarter note, two eighth notes, quarter note", correct: true, feedback: "Correct! Quarter (1 beats) + two eighths (1 beat) + quarter (1 beat) spans one measure of 4/4." },
       { label: "Whole note, quarter note, half note",    correct: false },
       { label: "Quarter, quarter, quarter, quarter",     correct: false },
       { label: "Dotted quarter, eighth, whole note",     correct: false }
@@ -530,7 +530,7 @@ const questions = [
   {
     section: SECTIONS.METER,
     type: "notation",
-    text: "What time signature best fits this two-measure excerpt?",
+    text: "What time signature best fits this two-measure excerpt? Note there is a missing barline.",
     notation: {
       clef: "treble", timeSignature: null,
       notes: [
