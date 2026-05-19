@@ -7,17 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div style="position:fixed;top:10px;right:10px;z-index:999;background:white;padding:5px;border:1px solid #ccc;border-radius:5px;">
-<input id="dev-jump" type="number" min="1" placeholder="Q#" style="width:40px;" />
-<button onclick="jumpToQuestion(document.getElementById('dev-jump').value)">Go</button>
-</div>
-  <div style="position:fixed;top:10px;right:10px;z-index:999;background:white;padding:5px;border:1px solid #ccc;border-radius:5px;">
-  <input id="dev-jump" type="number" min="1" placeholder="Q#" style="width:40px;" />
-  <button onclick="jumpToQuestion(document.getElementById('dev-jump').value)">Go</button>
-</div>
 
   <!-- INTRO SCREEN -->
   <div id="screen-intro" class="screen active">
@@ -30,9 +22,9 @@
       <div class="intro-body">
         <p>This short diagnostic helps us understand your background so you can hit the ground running. There are no tricks — just honest questions about what you already know.</p>
         <ul class="intro-list">
-          <li><span class="bullet">♩</span> About 30-36 questions</li>
+          <li><span class="bullet">♩</span> About 20–25 questions</li>
           <li><span class="bullet">♩</span> Multiple choice throughout</li>
-          <li><span class="bullet">♩</span> Takes roughly 10 minutes or less</li>
+          <li><span class="bullet">♩</span> Takes roughly 10–15 minutes</li>
           <li><span class="bullet">♩</span> Your score helps you, not grades you</li>
         </ul>
         <button id="btn-start" class="btn-primary">Begin Assessment</button>
@@ -79,8 +71,8 @@
     </div>
   </div>
 
-  <script src="questions.js"></script>
-  <script src="notation.js"></script>
-  <script src="quiz.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/notation.js"></script>
+  <script src="js/quiz.js"></script>
 </body>
 </html>
