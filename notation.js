@@ -1,7 +1,7 @@
 // =============================================
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
-const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, Dot } = Vex.Flow;
+const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental } = Vex.Flow;
 
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
@@ -36,11 +36,10 @@ function renderNotation(containerId, config) {
       if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
       else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
     });
-    if (n.dots) Dot.buildAndAttach([sn], { all: true });
     return sn;
   });
 
-  // Beaming
+  // Beaming: use explicit beamGroups if provided, otherwise auto-beam all eighths
   let beams = [];
   if (config.beamGroups) {
     beams = config.beamGroups.map(group => new Beam(group.map(i => staveNotes[i])));
@@ -70,17 +69,20 @@ function renderNotation(containerId, config) {
 }
 
 function renderKeyboard(containerId, config) {
+  // config = { highlight: "F#" | "Bb" | "E" | "F" etc. }
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = "";
 
-  const WW = 36;
-  const WH = 110;
-  const BW = 22;
-  const BH = 68;
+  const WW = 36;  // white key width
+  const WH = 110; // white key height
+  const BW = 22;  // black key width
+  const BH = 68;  // black key height
   const whites = ["C","D","E","F","G","A","B","C"];
   const totalW = WW * whites.length + 2;
 
+  // Black key positions (x offset from left edge of octave)
+  // C#, D#, (gap), F#, G#, A#
   const blackKeys = [
     { name: ["C#","Db"], x: WW - BW/2 },
     { name: ["D#","Eb"], x: WW*2 - BW/2 },
@@ -96,7 +98,10 @@ function renderKeyboard(containerId, config) {
   svg.setAttribute("width", totalW);
   svg.setAttribute("height", WH + 20);
 
+  // Draw white keys
   whites.forEach((note, i) => {
+    const isHighlighted = highlight === note && !highlight.includes("#") && !highlight.includes("b");
+    // Special case: highlight could be enharmonic of white key
     const enharmonics = { "E": "Fb", "B": "Cb", "C": "B#", "F": "E#" };
     const isEnharmonicHighlight = enharmonics[note] === highlight || highlight === note;
 
@@ -108,4 +113,54 @@ function renderKeyboard(containerId, config) {
     rect.setAttribute("rx", "3");
     rect.setAttribute("fill", isEnharmonicHighlight ? "#c8953a" : "white");
     rect.setAttribute("stroke", "#333");
-    rect.se
+    rect.setAttribute("stroke-width", "1.5");
+    svg.appendChild(rect);
+
+    // Note label at bottom
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", i * WW + WW/2);
+    text.setAttribute("y", WH - 8);
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "11");
+    text.setAttribute("font-family", "Arial");
+    text.setAttribute("fill", isEnharmonicHighlight ? "white" : "#666");
+    text.textContent = note;
+    svg.appendChild(text);
+  });
+
+  // Draw black keys on top
+  blackKeys.forEach(bk => {
+    const isHighlighted = bk.name.includes(highlight);
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", bk.x);
+    rect.setAttribute("y", 1);
+    rect.setAttribute("width", BW);
+    rect.setAttribute("height", BH);
+    rect.setAttribute("rx", "2");
+    rect.setAttribute("fill", isHighlighted ? "#c8953a" : "#1a1a2e");
+    rect.setAttribute("stroke", "#000");
+    rect.setAttribute("stroke-width", "1");
+    svg.appendChild(rect);
+  });
+
+  container.appendChild(svg);
+}
+
+function renderKeySignature(containerId, config) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const width  = 260;
+  const height = 140;
+
+  const renderer = new Renderer(container, Renderer.Backends.SVG);
+  renderer.resize(width, height);
+  const ctx = renderer.getContext();
+
+  const stave = new Stave(20, 25, 220);
+  stave.addClef(config.clef || "treble");
+  stave.addKeySignature(config.key);
+  stave.setContext(ctx).draw();
+}
