@@ -229,21 +229,22 @@ const questions = [
     wideChoices: true
   },
   {
+    {
     section: SECTIONS.RHYTHM,
     type: "notation",
     text: "This measure is in 6/8. Which single REST would complete it?",
     notation: {
       clef: "treble", timeSignature: "6/8",
       notes: [
-        { keys: ["b/4"], duration: "qd" },
+        { keys: ["b/4"], duration: "q" },
         { keys: ["b/4"], duration: "8" }
       ]
     },
     choices: [
-      { label: "Dotted quarter rest (3 beats)", correct: false },
-      { label: "Quarter rest (2 beats)",        correct: true, feedback: "Correct! The dotted quarter (3 beats) tied to an eighth (1 beat) uses 4 of the 6 beats, leaving 2 beats — a quarter rest." },
-      { label: "Eighth rest (1 beat)",           correct: false },
-      { label: "Half rest (2 beats)",            correct: false }
+      { label: "Dotted quarter rest (3 beats)", correct: true,  feedback: "Correct! The quarter note (2 beats) and eighth note (1 beat) use 3 of the 6 beats, leaving 3 beats — a dotted quarter rest." },
+      { label: "Quarter rest (2 beats)",        correct: false },
+      { label: "Eighth rest (1 beat)",          correct: false },
+      { label: "Half rest (2 beats)",           correct: false }
     ],
     wideChoices: true
   },
