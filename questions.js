@@ -341,32 +341,6 @@ const questions = [
     section: SECTIONS.KEY_SIG,
     type: "keysig",
     text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "G" },
-    choices: [
-      { label: "C major", correct: false },
-      { label: "G major", correct: true, feedback: "Correct! One sharp (F#) means G major." },
-      { label: "D major", correct: false },
-      { label: "F major", correct: false }
-    ]
-  },
-
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "F" },
-    choices: [
-      { label: "C major",  correct: false },
-      { label: "G major",  correct: false },
-      { label: "Bb major", correct: false },
-      { label: "F major",  correct: true, feedback: "Correct! One flat (Bb) means F major." }
-    ]
-  },
-
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What major key does this key signature represent?",
     keysig: { clef: "treble", key: "D" },
     choices: [
       { label: "A major", correct: false },
@@ -375,7 +349,6 @@ const questions = [
       { label: "E major", correct: false }
     ]
   },
-
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -388,33 +361,18 @@ const questions = [
       { label: "Bb major", correct: true, feedback: "Correct! Two flats (Bb and Eb) mean Bb major." }
     ]
   },
-
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
     text: "What major key does this key signature represent?",
-    keysig: { clef: "bass", key: "Eb" },
+    keysig: { clef: "treble", key: "G" },
     choices: [
-      { label: "Bb major", correct: false },
-      { label: "Eb major", correct: true, feedback: "Correct! Three flats (Bb, Eb, Ab) mean Eb major." },
-      { label: "Ab major", correct: false },
-      { label: "F major",  correct: false }
-    ]
-  },
-
-  {
-    section: SECTIONS.KEY_SIG,
-    type: "keysig",
-    text: "What major key does this key signature represent?",
-    keysig: { clef: "treble", key: "A" },
-    choices: [
+      { label: "C major", correct: false },
+      { label: "G major", correct: true, feedback: "Correct! One sharp (F#) means G major." },
       { label: "D major", correct: false },
-      { label: "E major", correct: false },
-      { label: "A major", correct: true, feedback: "Correct! Three sharps (F#, C#, G#) mean A major." },
-      { label: "B major", correct: false }
+      { label: "F major", correct: false }
     ]
   },
-
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -427,7 +385,30 @@ const questions = [
       { label: "Ab major", correct: true, feedback: "Correct! Four flats (Bb, Eb, Ab, Db) mean Ab major." }
     ]
   },
-
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "What major key does this key signature represent?",
+    keysig: { clef: "treble", key: "A" },
+    choices: [
+      { label: "D major", correct: false },
+      { label: "E major", correct: false },
+      { label: "A major", correct: true, feedback: "Correct! Three sharps (F#, C#, G#) mean A major." },
+      { label: "B major", correct: false }
+    ]
+  },
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "What major key does this key signature represent?",
+    keysig: { clef: "treble", key: "F" },
+    choices: [
+      { label: "C major",  correct: false },
+      { label: "G major",  correct: false },
+      { label: "Bb major", correct: false },
+      { label: "F major",  correct: true, feedback: "Correct! One flat (Bb) means F major." }
+    ]
+  },
   {
     section: SECTIONS.KEY_SIG,
     type: "keysig",
@@ -438,6 +419,18 @@ const questions = [
       { label: "F# major", correct: false },
       { label: "B major",  correct: true, feedback: "Correct! Five sharps (F#, C#, G#, D#, A#) mean B major." },
       { label: "A major",  correct: false }
+    ]
+  },
+  {
+    section: SECTIONS.KEY_SIG,
+    type: "keysig",
+    text: "What major key does this key signature represent?",
+    keysig: { clef: "bass", key: "Eb" },
+    choices: [
+      { label: "Bb major", correct: false },
+      { label: "Eb major", correct: true, feedback: "Correct! Three flats (Bb, Eb, Ab) mean Eb major." },
+      { label: "Ab major", correct: false },
+      { label: "F major",  correct: false }
     ]
   },
 
