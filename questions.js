@@ -240,7 +240,7 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Dotted quarter rest (3 beats)", correct: true,  feedback: "Correct! The quarter note (2 beats) and eighth note (1 beat) use 3 of the 6 beats, leaving 3 beats — a dotted quarter rest." },
+      { label: "Dotted quarter rest", correct: true,  feedback: "Correct! The quarter note (2 beats) and eighth note (1 beat) use 3 of the 6 beats, leaving 3 beats — a dotted quarter rest." },
       { label: "Quarter rest",        correct: false },
       { label: "Eighth rest",          correct: false },
       { label: "Half rest",           correct: false }
