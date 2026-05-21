@@ -45,12 +45,17 @@ function renderNotation(containerId, config) {
   const ties = [];
   config.notes.forEach((n, i) => {
     if (n.tieFrom && staveNotes[i + 1]) {
-      ties.push(new StaveTie({
-        first_note:  staveNotes[i],
-        last_note:   staveNotes[i + 1],
-        first_indices:  [0],
-        last_indices:   [0]
-      }));
+      try {
+        const tie = new Vex.Flow.StaveTie({
+          first_note:    staveNotes[i],
+          last_note:     staveNotes[i + 1],
+          first_indices: [0],
+          last_indices:  [0]
+        });
+        ties.push(tie);
+      } catch(e) {
+        console.warn("Tie render failed:", e);
+      }
     }
   });
     n.keys.forEach((key, i) => {
