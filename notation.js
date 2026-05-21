@@ -2,6 +2,7 @@
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
 const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, Dot } = Vex.Flow;
+
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -40,7 +41,7 @@ function renderNotation(containerId, config) {
     return sn;
   });
 
-  // Beaming: use explicit beamGroups if provided, otherwise auto-beam all eighths
+  // Beaming
   let beams = [];
   if (config.beamGroups) {
     beams = config.beamGroups.map(group => new Beam(group.map(i => staveNotes[i])));
@@ -70,20 +71,17 @@ function renderNotation(containerId, config) {
 }
 
 function renderKeyboard(containerId, config) {
-  // config = { highlight: "F#" | "Bb" | "E" | "F" etc. }
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = "";
 
-  const WW = 36;  // white key width
-  const WH = 110; // white key height
-  const BW = 22;  // black key width
-  const BH = 68;  // black key height
+  const WW = 36;
+  const WH = 110;
+  const BW = 22;
+  const BH = 68;
   const whites = ["C","D","E","F","G","A","B","C"];
   const totalW = WW * whites.length + 2;
 
-  // Black key positions (x offset from left edge of octave)
-  // C#, D#, (gap), F#, G#, A#
   const blackKeys = [
     { name: ["C#","Db"], x: WW - BW/2 },
     { name: ["D#","Eb"], x: WW*2 - BW/2 },
@@ -99,10 +97,7 @@ function renderKeyboard(containerId, config) {
   svg.setAttribute("width", totalW);
   svg.setAttribute("height", WH + 20);
 
-  // Draw white keys
   whites.forEach((note, i) => {
-    const isHighlighted = highlight === note && !highlight.includes("#") && !highlight.includes("b");
-    // Special case: highlight could be enharmonic of white key
     const enharmonics = { "E": "Fb", "B": "Cb", "C": "B#", "F": "E#" };
     const isEnharmonicHighlight = enharmonics[note] === highlight || highlight === note;
 
@@ -117,7 +112,6 @@ function renderKeyboard(containerId, config) {
     rect.setAttribute("stroke-width", "1.5");
     svg.appendChild(rect);
 
-    // Note label at bottom
     const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute("x", i * WW + WW/2);
     text.setAttribute("y", WH - 8);
@@ -129,7 +123,6 @@ function renderKeyboard(containerId, config) {
     svg.appendChild(text);
   });
 
-  // Draw black keys on top
   blackKeys.forEach(bk => {
     const isHighlighted = bk.name.includes(highlight);
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
