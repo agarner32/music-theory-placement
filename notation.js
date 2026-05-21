@@ -36,6 +36,27 @@ function renderNotation(containerId, config) {
       if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
       else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
     });
+    if (n.dots) Dot.buildAndAttach([sn], { all: true });
+    return sn;
+  });
+
+  // Add ties
+  const { StaveTie } = Vex.Flow;
+  const ties = [];
+  config.notes.forEach((n, i) => {
+    if (n.tieFrom && staveNotes[i + 1]) {
+      ties.push(new StaveTie({
+        first_note:  staveNotes[i],
+        last_note:   staveNotes[i + 1],
+        first_indices:  [0],
+        last_indices:   [0]
+      }));
+    }
+  });
+    n.keys.forEach((key, i) => {
+      if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
+      else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
+    });
     return sn;
   });
 
@@ -66,6 +87,7 @@ function renderNotation(containerId, config) {
   new Formatter().joinVoices([voice]).format([voice], staveW - 60);
   voice.draw(ctx, stave);
   beams.forEach(b => b.setContext(ctx).draw());
+  ties.forEach(t => t.setContext(ctx).draw());
 }
 
 function renderKeyboard(containerId, config) {
