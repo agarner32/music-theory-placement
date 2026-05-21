@@ -1,8 +1,7 @@
 // =============================================
 //  NOTATION.JS — VexFlow rendering helper
 // =============================================
-const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental } = Vex.Flow;
-
+const { Renderer, Stave, StaveNote, Beam, Voice, Formatter, Accidental, Dot } = Vex.Flow;
 function renderNotation(containerId, config) {
   const container = document.getElementById(containerId);
   if (!container) return;
