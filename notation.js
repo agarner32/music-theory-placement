@@ -43,21 +43,7 @@ function renderNotation(containerId, config) {
   // Add ties
   const { StaveTie } = Vex.Flow;
   const ties = [];
-  config.notes.forEach((n, i) => {
-    if (n.tieFrom && staveNotes[i + 1]) {
-      try {
-        const tie = new Vex.Flow.StaveTie({
-          first_note:    staveNotes[i],
-          last_note:     staveNotes[i + 1],
-          first_indices: [0],
-          last_indices:  [0]
-        });
-        ties.push(tie);
-      } catch(e) {
-        console.warn("Tie render failed:", e);
-      }
-    }
-  });
+  
     n.keys.forEach((key, i) => {
       if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
       else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
@@ -92,7 +78,7 @@ function renderNotation(containerId, config) {
   new Formatter().joinVoices([voice]).format([voice], staveW - 60);
   voice.draw(ctx, stave);
   beams.forEach(b => b.setContext(ctx).draw());
-  ties.forEach(t => t.setContext(ctx).draw());
+  
 }
 
 function renderKeyboard(containerId, config) {
