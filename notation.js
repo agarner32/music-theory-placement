@@ -36,6 +36,8 @@ function renderNotation(containerId, config) {
       if (key.includes("#")) sn.addModifier(new Accidental("#"), i);
       else if (key.includes("b") && key.match(/[a-g]b/)) sn.addModifier(new Accidental("b"), i);
     });
+    sn._originalDuration = n.duration;
+    if (n.duration.endsWith("d") || n.dots) Dot.buildAndAttach([sn], { all: true });
     return sn;
   });
 
@@ -44,7 +46,7 @@ function renderNotation(containerId, config) {
   if (config.beamGroups) {
     beams = config.beamGroups.map(group => new Beam(group.map(i => staveNotes[i])));
   } else {
-    const eighths = staveNotes.filter(n => ["8","16","8d"].includes(n.getDuration()));
+    const eighths = staveNotes.filter(n => n._originalDuration === "8");
     if (eighths.length >= 2) beams = [new Beam(eighths)];
   }
 
@@ -54,7 +56,7 @@ function renderNotation(containerId, config) {
     numBeats  = parseInt(parts[0]);
     beatValue = parseInt(parts[1]);
   } else {
-    const durMap = { w: 1, h: 2, q: 4, qd: 2.67, "8": 8 };
+    const durMap = { w: 1, h: 2, q: 4, qd: 2.67, hd: 1.33, "8": 8, "8d": 5.33, "16": 16 };
     let totalQ = 0;
     config.notes.forEach(n => { totalQ += 16 / (durMap[n.duration] || 4); });
     numBeats  = Math.max(4, Math.ceil(totalQ / 4));
