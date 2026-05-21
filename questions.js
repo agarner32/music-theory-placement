@@ -266,6 +266,26 @@ const questions = [
     ],
     wideChoices: true
   },
+  {
+    section: SECTIONS.RHYTHM,
+    type: "notation",
+    text: "This measure is in 3/4. Which single REST would complete it?",
+    notation: {
+      clef: "treble", timeSignature: "3/4",
+      notes: [
+        { keys: ["b/4"], duration: "8r" },
+        { keys: ["b/4"], duration: "q", dots: 1 },
+        { keys: ["b/4"], duration: "8", dots: 1 }
+      ]
+    },
+    choices: [
+      { label: "Eighth rest",    correct: false },
+      { label: "Sixteenth rest", correct: true, feedback: "Correct! Eighth rest (½) + dotted quarter (1½) + dotted eighth (¾) = 2¾ beats, leaving ¼ beat — a sixteenth rest." },
+      { label: "Quarter rest",   correct: false },
+      { label: "Half rest",      correct: false }
+    ],
+    wideChoices: true
+  },
 
   // ── METER ─────────────────────────────────────────────────
 
