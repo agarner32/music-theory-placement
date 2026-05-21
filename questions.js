@@ -236,7 +236,7 @@ const questions = [
       clef: "treble", timeSignature: "6/8",
       notes: [
         { keys: ["b/4"], duration: "qd" },
-        { keys: ["b/4"], duration: "8", tieFrom: true }
+        { keys: ["b/4"], duration: "8" }
       ]
     },
     choices: [
