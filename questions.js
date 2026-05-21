@@ -200,10 +200,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole rest (4 beats)",  correct: false },
-      { label: "Half rest (2 beats)",   correct: false },
-      { label: "Quarter rest (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
-      { label: "Eighth rest (½ beat)",  correct: false }
+      { label: "Whole rest",  correct: false },
+      { label: "Half rest",   correct: false },
+      { label: "Quarter rest", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so a quarter rest completes the measure." },
+      { label: "Eighth rest",  correct: false }
     ],
     wideChoices: true
   },
@@ -221,10 +221,10 @@ const questions = [
       ]
     },
     choices: [
-      { label: "Whole note (4 beats)",  correct: false },
-      { label: "Half note (2 beats)",   correct: false },
-      { label: "Quarter note (1 beat)", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
-      { label: "Eighth note (½ beat)",  correct: false }
+      { label: "Whole note",  correct: false },
+      { label: "Half note",   correct: false },
+      { label: "Quarter note", correct: true, feedback: "Correct! Three quarter notes use 3 beats, so one more quarter note completes the measure." },
+      { label: "Eighth note",  correct: false }
     ],
     wideChoices: true
   },
@@ -241,9 +241,28 @@ const questions = [
     },
     choices: [
       { label: "Dotted quarter rest (3 beats)", correct: true,  feedback: "Correct! The quarter note (2 beats) and eighth note (1 beat) use 3 of the 6 beats, leaving 3 beats — a dotted quarter rest." },
-      { label: "Quarter rest (2 beats)",        correct: false },
-      { label: "Eighth rest (1 beat)",          correct: false },
-      { label: "Half rest (2 beats)",           correct: false }
+      { label: "Quarter rest",        correct: false },
+      { label: "Eighth rest",          correct: false },
+      { label: "Half rest",           correct: false }
+    ],
+    wideChoices: true
+  },
+  {
+    section: SECTIONS.RHYTHM,
+    type: "notation",
+    text: "This measure is in 4/4. Which single note would complete it?",
+    notation: {
+      clef: "treble", timeSignature: "4/4",
+      notes: [
+        { keys: ["b/4"], duration: "h" },
+        { keys: ["b/4"], duration: "8r" }
+      ]
+    },
+    choices: [
+      { label: "Quarter note",        correct: false },
+      { label: "Dotted eighth note",  correct: false },
+      { label: "Dotted quarter note", correct: true, feedback: "Correct! The half note (2 beats) and eighth rest (½ beat) use 2½ beats, leaving 1½ beats — a dotted quarter note." },
+      { label: "Half note",           correct: false }
     ],
     wideChoices: true
   },
@@ -606,4 +625,5 @@ const questions = [
   }
 
 ];
+
  
