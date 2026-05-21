@@ -229,7 +229,6 @@ const questions = [
     wideChoices: true
   },
   {
-    {
     section: SECTIONS.RHYTHM,
     type: "notation",
     text: "This measure is in 6/8. Which single REST would complete it?",
