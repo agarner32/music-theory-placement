@@ -247,7 +247,7 @@ const questions = [
     ],
     wideChoices: true
   },
-  {
+  
     {
     section: SECTIONS.RHYTHM,
     type: "notation",
