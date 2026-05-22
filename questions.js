@@ -248,21 +248,21 @@ const questions = [
     wideChoices: true
   },
   {
+    {
     section: SECTIONS.RHYTHM,
     type: "notation",
     text: "This measure is in 4/4. Which single note would complete it?",
     notation: {
       clef: "treble", timeSignature: "4/4",
       notes: [
-        { keys: ["b/4"], duration: "h" },
-        { keys: ["b/4"], duration: "8r" }
+        { keys: ["b/4"], duration: "q" }
       ]
     },
     choices: [
-      { label: "Quarter note",        correct: false },
-      { label: "Dotted eighth note",  correct: false },
-      { label: "Dotted quarter note", correct: true, feedback: "Correct! The half note (2 beats) and eighth rest (½ beat) use 2½ beats, leaving 1½ beats — a dotted quarter note." },
-      { label: "Half note",           correct: false }
+      { label: "Dotted half note",   correct: true,  feedback: "Correct! The quarter note uses 1 beat, leaving 3 beats — a dotted half note." },
+      { label: "Half note",          correct: false },
+      { label: "Dotted quarter note", correct: false },
+      { label: "Whole note",         correct: false }
     ],
     wideChoices: true
   },
